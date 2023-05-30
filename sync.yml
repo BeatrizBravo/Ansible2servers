@@ -1,0 +1,11 @@
+- hosts: boost-public
+  tasks:
+  - name: "sync website"
+    synchronize:
+      src: ./index.html
+      dest: /var/www/html
+      archive: no
+      checksum: yes
+      recursive: yes
+      delete: yes
+    become: no

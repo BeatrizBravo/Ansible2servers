@@ -1,0 +1,34 @@
+- hosts: boost-private
+  become: true
+  tasks:
+    - name: Install latest version of Apache
+      apt: name=apache2 update_cache=yes state=latest
+    - name: Create document root for domain configured in host variable
+      file:
+        path: "/var/www/html"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+    - name: Copy your index file
+      template:
+        src: "./apache-page/index.html"
+        dest: "/var/www/html/index.html"
+    - name: Set up virtualHost
+      template:
+        src: "./apache.conf"
+        dest: "/etc/apache2/sites-available/apache.conf"
+    - name: Enable site
+      command: a2ensite apache.conf
+      notify: restart-apache
+    - name: "UFW firewall allow HTTP on port 80"
+      ufw:
+        rule: allow
+        port: "80"
+        proto: tcp
+
+  handlers:
+    - name: restart-apache
+      service:
+        name: apache2
+        state: restarted  

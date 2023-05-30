@@ -1,0 +1,11 @@
+[all:vars]
+ansible_user=bea
+[public]
+boost-public    ansible_host=18.170.30.71
+
+
+[private]
+boost-private   ansible_host=10.10.10.138
+
+[private:vars]
+ansible_ssh_common_args='-J bea@18.170.30.71'
