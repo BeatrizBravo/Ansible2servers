@@ -111,7 +111,10 @@ Ansible --version
 # Connect the servers
 
 To connect the master server (our local machine) with the remote server o node server, we need to use ssh command.
-SH (Secure Shell) command is a network protocol that provides secure encrypted communication between two hosts over an insecure network. To  connect a remote serever you can type in the command line:
+SH (Secure Shell) command is a network protocol that provides secure encrypted communication between two hosts over an insecure network. <br>
+[What is SSH?](https://www.freecodecamp.org/news/ssh-meaning-in-linux/)
+
+<br>To  connect a remote serever you can type in the command line:
 
 
 ```bash
